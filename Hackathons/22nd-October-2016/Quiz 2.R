@@ -1,6 +1,6 @@
 pop1900 <- read.csv("baby1900.csv")
 pop2000 <- read.csv("baby2000.csv")
-
+library(ggplot2)
 #US Names 1900 Data http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob1900.txt
 #US Names 2000 Data http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob2000.txt
 #Name columns as Name, Sex, Number Of Births
@@ -11,11 +11,11 @@ colnames(pop2000) <- population_headers
 #Q1
 #Load in the file from 1900 using read.csv into a variable called pop1900
 
-pop1900 = read.csv(url("http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob1900.txt"), header = FALSE)
+#pop1900 = read.csv(url("http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob1900.txt"), header = FALSE)
 
 #Q2
 #Load in the file from 2000 using read.csv into a variable called pop2000
-pop2000 = read.csv('http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob2000.txt', header = FALSE)
+#pop2000 = read.csv('http://darren.dbsdataprojects.com/wp-content/uploads/sites/2/2016/10/yob2000.txt', header = FALSE)
 
 #Q3
 #How many babies were born in 1900
@@ -104,8 +104,15 @@ Darren1900
 
 
 #Plot to show names in 1900 v 2000
-plot(ordered_diff_female$n1900, ordered_diff_female$n2000)
-plot(ordered_diff_male$n1900, ordered_diff_male$n2000)
+#plot(ordered_diff_female$n1900, ordered_diff_female$n2000)
+#plot(ordered_diff_male$n1900, ordered_diff_male$n2000)
+
+#ggplot
+
+ggplot(ordered_diff_female, aes(x=n1900, y=n2000)) +
+  geom_point() 
+ 
+
 
 #adding text to the top 10 changers
 text(ordered_diff_female$n1900[1:10], ordered_diff_female$n2000[1:10], labels=ordered_diff_female$Name[1:10], cex= 0.7, pos=3)
